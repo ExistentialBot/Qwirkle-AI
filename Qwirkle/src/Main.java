@@ -8,8 +8,142 @@ public class Main {
 		generateBag();
 		createGrid();
 		
+		// testing calculateScore method with sample game in rules pdf
+	/*	grid.get(2).get(4).setColour(Tile.tile6.getColour());
+		grid.get(2).get(4).setShape(Tile.tile6.getShape());
+		grid.get(3).get(4).setColour(Tile.tile3.getColour());
+		grid.get(3).get(4).setShape(Tile.tile3.getShape());
+		grid.get(4).get(4).setColour(Tile.tile1.getColour());
+		grid.get(4).get(4).setShape(Tile.tile1.getShape());
 		
-		// testing validity
+		ArrayList<Location> annaFirst  = new ArrayList<Location>();
+		annaFirst.add(new Location(2,4));
+		annaFirst.add(new Location(3,4));
+		annaFirst.add(new Location(4,4));
+		
+		System.out.println("Anna should score a 3, she scores: " + calculateScore(annaFirst));
+		
+		grid.get(5).get(4).setColour(Tile.tile4.getColour());
+		grid.get(5).get(4).setShape(Tile.tile4.getShape());
+		grid.get(5).get(5).setColour(Tile.tile28.getColour());
+		grid.get(5).get(5).setShape(Tile.tile28.getShape());
+		grid.get(5).get(6).setColour(Tile.tile34.getColour());
+		grid.get(5).get(6).setShape(Tile.tile34.getShape());
+		
+		ArrayList<Location> chrisFirst = new ArrayList<Location>();
+		chrisFirst.add(new Location(5,4));
+		chrisFirst.add(new Location(5,5));
+		chrisFirst.add(new Location(5,6));
+		
+		System.out.println("Chris should score a 7, he scores: " + calculateScore(chrisFirst));
+		
+		grid.get(4).get(5).setColour(Tile.tile25.getColour());
+		grid.get(4).get(5).setShape(Tile.tile25.getShape());
+		
+		ArrayList<Location> sallyFirst = new ArrayList<Location>();
+		sallyFirst.add(new Location(4,5));
+		
+		System.out.println("Sally should score a 4, she scores: " + calculateScore(sallyFirst));
+		
+		grid.get(2).get(3).setColour(Tile.tile24.getColour());
+		grid.get(2).get(3).setShape(Tile.tile24.getShape());
+		grid.get(3).get(3).setColour(Tile.tile21.getColour());
+		grid.get(3).get(3).setShape(Tile.tile21.getShape());
+		
+		ArrayList<Location> daveFirst = new ArrayList<Location>();
+		daveFirst.add(new Location(2,3));
+		daveFirst.add(new Location(3,3));
+		
+		System.out.println("Dave should score a 6, he scores: " + calculateScore(daveFirst));
+		
+		grid.get(1).get(3).setColour(Tile.tile23.getColour());
+		grid.get(1).get(3).setShape(Tile.tile23.getShape());
+		grid.get(4).get(3).setColour(Tile.tile19.getColour());
+		grid.get(4).get(3).setShape(Tile.tile19.getShape());
+		
+		ArrayList<Location> annaSecond = new ArrayList<Location>();
+		annaSecond.add(new Location(1,3));
+		annaSecond.add(new Location(4,3));
+		
+		System.out.println("Anna should score a 7, she scores: " + calculateScore(annaSecond));
+		
+		grid.get(5).get(7).setColour(Tile.tile10.getColour());
+		grid.get(5).get(7).setShape(Tile.tile10.getShape());
+		grid.get(6).get(7).setColour(Tile.tile4.getColour());
+		grid.get(6).get(7).setShape(Tile.tile4.getShape());
+		
+		ArrayList<Location> chrisSecond = new ArrayList<Location>();
+		chrisSecond.add(new Location(5,7));
+		chrisSecond.add(new Location(6,7));
+		
+		System.out.println("Chris shouls score a 6, he scores: " + calculateScore(chrisSecond));
+		
+		grid.get(1).get(1).setColour(Tile.tile11.getColour());
+		grid.get(1).get(1).setShape(Tile.tile11.getShape());
+		grid.get(1).get(2).setColour(Tile.tile17.getColour());
+		grid.get(1).get(2).setShape(Tile.tile17.getShape());
+		
+		ArrayList<Location> sallySecond = new ArrayList<Location>();
+		sallySecond.add(new Location(1,1));
+		sallySecond.add(new Location(1,2));
+		
+		System.out.println("Sally should score a 3, she scores: " + calculateScore(sallySecond));
+		
+		grid.get(2).get(1).setColour(Tile.tile8.getColour());
+		grid.get(2).get(1).setShape(Tile.tile8.getShape());
+		grid.get(3).get(1).setColour(Tile.tile9.getColour());
+		grid.get(3).get(1).setShape(Tile.tile9.getShape());
+		
+		ArrayList<Location> daveSecond = new ArrayList<Location>();
+		daveSecond.add(new Location(2,1));
+		daveSecond.add(new Location(3,1));
+		
+		System.out.println("Dave should score a 3, he scores: " + calculateScore(daveSecond));
+		
+		grid.get(3).get(2).setColour(Tile.tile15.getColour());
+		grid.get(3).get(2).setShape(Tile.tile15.getShape());
+		grid.get(4).get(2).setColour(Tile.tile13.getColour());
+		grid.get(4).get(2).setShape(Tile.tile13.getShape());
+		
+		ArrayList<Location> annaThird = new ArrayList<Location>();
+		annaThird.add(new Location(3,2));
+		annaThird.add(new Location(4,2));
+		
+		System.out.println("Anna should score a 10, she scores: " + calculateScore(annaThird));
+		
+		grid.get(1).get(4).setColour(Tile.tile5.getColour());
+		grid.get(1).get(4).setShape(Tile.tile5.getShape());
+		
+		ArrayList<Location> chrisThird = new ArrayList<Location>();
+		chrisThird.add(new Location(1,4));
+		
+		System.out.println("Chris should score a 9, he scores: " + calculateScore(chrisThird));
+		
+		grid.get(6).get(3).setColour(Tile.tile8.getColour());
+		grid.get(6).get(3).setShape(Tile.tile8.getShape());
+		grid.get(6).get(4).setColour(Tile.tile2.getColour());
+		grid.get(6).get(4).setShape(Tile.tile2.getShape());
+		grid.get(6).get(5).setColour(Tile.tile26.getColour());
+		grid.get(6).get(5).setShape(Tile.tile26.getShape());
+		
+		ArrayList<Location> sallyThird = new ArrayList<Location>();
+		sallyThird.add(new Location(6,3));
+		sallyThird.add(new Location(6,4));
+		sallyThird.add(new Location(6,5));
+		
+		System.out.println("Sally should score a 18, she scores: " + calculateScore(sallyThird));
+		
+		grid.get(5).get(8).setColour(Tile.tile16.getColour());
+		grid.get(5).get(8).setShape(Tile.tile16.getShape());
+		grid.get(6).get(8).setColour(Tile.tile28.getColour());
+		grid.get(6).get(8).setShape(Tile.tile28.getShape());
+		
+		ArrayList<Location> daveThird = new ArrayList<Location>();
+		daveThird.add(new Location(5,8));
+		daveThird.add(new Location(6,8));
+		
+		System.out.println("Dave should score a 9, he scores: " + calculateScore(daveThird)); */
+		
 		/*grid.get(1).get(1).setColour(Tile.tile1.getColour());
 		grid.get(1).get(1).setShape(Tile.tile1.getShape());
 		grid.get(1).get(2).setColour(Tile.tile2.getColour());
@@ -19,7 +153,7 @@ public class Main {
 		//grid.get(2).get(3).setColour(Tile.tile21.getColour());
 		//grid.get(2).get(3).setShape(Tile.tile21.getShape());
 		grid.get(3).get(3).setColour(Tile.tile27.getColour());
-		grid.get(3).get(3).setShape(Tile.tile27.getShape());
+		grid.get(3).get(3).setShape(Tile.tile27.getShape()); 
 		
 		if (isValidCheck(Tile.tile21, 2, 3)){
 			System.out.println("Valid location");
@@ -29,7 +163,6 @@ public class Main {
 		}
 		*/
 		
-	    // testing ordering 
 		/*
 		Player human1 = new Player(1, "human1", 5, new ArrayList<Tile>());
 		Player human2 = new Player(2, "human2", 7, new ArrayList<Tile>());
@@ -57,7 +190,6 @@ public class Main {
 		System.out.println(players.get(1).getPlayerName());
 		System.out.println(players.get(2).getPlayerName()); */
 		
-		// testing end turn
 	/*	printCurrentPlayer();
 		endTurn();
 		printCurrentPlayer();
@@ -72,7 +204,6 @@ public class Main {
 		endTurn();
 		printCurrentPlayer();  */
 		
-		//testing giving tiles and swapping tiles
 	  /*  Player karim = new Player(1, "karim", 0, new ArrayList<Tile>());
 	    givePlayerTiles(karim, 6);
 	    
@@ -86,13 +217,11 @@ public class Main {
 	    swapTiles(karim, indexes);
 	    System.out.println(printTiles(karim.currentTiles));
 	    */
-		
-		// testing giving random tiles
-	/*	Tile newRandom = giveRandomTile();
-		grid.get(2).get(2).setColour(newRandom.getColour());
-		grid.get(2).get(2).setShape(newRandom.getShape()); */
+		//  Tile newRandom = giveRandomTile();
+	//	grid.get(2).get(2).setColour(newRandom.getColour());
+	//	grid.get(2).get(2).setShape(newRandom.getShape());
 
-	  //  printGrid();
+	    printGrid();
 		
 	}
 	
@@ -100,6 +229,128 @@ public class Main {
 	public static List<ArrayList<Tile>> grid = new ArrayList<ArrayList<Tile>>();
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static int currentTurn = 0;
+	
+	
+	
+	// method that given a list of the locations of the tiles a player played it returns the players score
+	public static int calculateScore(ArrayList<Location> locations){
+		
+		int score = 0;
+	
+		if (locations.get(0).getRow() == locations.get(locations.size() -1).getRow()){
+			
+			int points = 1;
+			
+			int checkRowPlus = locations.get(0).getColoumn();
+			int checkRowMinus = locations.get(0).getColoumn();
+			
+			while(grid.get(locations.get(0).getRow()).get(checkRowPlus +1).getColour() != null){
+				
+				points++;
+				checkRowPlus++;
+			}
+			
+			while(grid.get(locations.get(0).getRow()).get(checkRowMinus -1).getColour() != null){
+				
+				points++;
+				checkRowMinus--;
+			}
+			
+			if(points == 6){
+				score = score + 6;
+			}
+			
+			score = score + points;
+			
+			for(int i = 0; i < locations.size(); i++){
+				
+				int coloumnPoints = 1;
+				
+				int checkColoumnPlus = locations.get(i).getRow();
+				int checkColoumnMinus = locations.get(i).getRow();
+				
+				while(grid.get(checkColoumnPlus + 1).get(locations.get(i).getColoumn()).getColour() != null){
+					
+					coloumnPoints++;
+					checkColoumnPlus++;
+				}
+				
+				while(grid.get(checkColoumnMinus - 1).get(locations.get(i).getColoumn()).getColour() != null){
+					
+					coloumnPoints++;
+					checkColoumnMinus--;
+				}
+				
+				if(coloumnPoints == 6){
+					score = score + 6;
+				}
+				if(coloumnPoints == 1){
+					coloumnPoints = 0;
+				}
+				score = score + coloumnPoints;
+				
+			}
+		
+		}
+		else {
+			
+			int points = 1;
+			
+			int checkColoumnPlus = locations.get(0).getRow();
+			int checkColoumnMinus = locations.get(0).getRow();
+			
+			while(grid.get(checkColoumnPlus +1).get(locations.get(0).getColoumn()).getColour() != null){
+				
+				points++;
+				checkColoumnPlus++;
+			}
+			
+			while(grid.get(checkColoumnMinus -1).get(locations.get(0).getColoumn()).getColour() != null){
+				
+				points++;
+				checkColoumnMinus--;
+			}
+			
+			if(points == 6){
+				score = score + 6;
+			}
+			
+			score = score + points;
+			
+			for(int i = 0; i < locations.size(); i++){
+				
+				int rowPoints = 1;
+				
+				int checkRowPlus = locations.get(i).getColoumn();
+				int checkRowMinus = locations.get(i).getColoumn();
+				
+				while(grid.get(locations.get(i).getRow()).get(checkRowPlus +1).getColour() != null){
+					
+					rowPoints++;
+					checkRowPlus++;
+				}
+				
+				while(grid.get(locations.get(i).getRow()).get(checkRowMinus -1).getColour() != null){
+					
+					rowPoints++;
+					checkRowMinus--;
+				}
+				
+				if(rowPoints == 6){
+					score = score + 6;
+				}
+				if(rowPoints == 1){
+					rowPoints = 0;
+				}
+				
+				score = score + rowPoints;
+				
+			}
+			
+		}
+		
+		return score;
+	}
 	
 	
 	// method to assign who plays first based initially on who has the best possible combo and if they have the same score then by who was added first to the list of players
@@ -180,7 +431,7 @@ public class Main {
 		}
 	}
 	
-	// method that takes in a tile and its row and column and outputs if it the place you want to add it to is valid or not by boolean
+	// method that takes in a tile and its row and coloumn and outputs if the place you want to add it to is valid or not
 	public static boolean isValidCheck(Tile inputTile, int row, int column){
 		
 		if (grid.get(row).get(column).getColour() != null){
@@ -240,14 +491,14 @@ public class Main {
 		return true;
 	}
 	
-	// method that prints who the current player is in the command line
+	// method that ptints who the current player is in the command line
 	public static void printCurrentPlayer(){
 		
 		System.out.println("Current player: " + players.get(currentTurn).getPlayerName());
 		
 	}
-		
-	// method that returns the current player so that you can perform functions on him
+	
+	// method that returns the current player so that you can perform functions on it
 	public static Player currentPlayer(){
 	
 		return players.get(currentTurn);
@@ -266,7 +517,7 @@ public class Main {
 		}
 	}
 	
-	// method that allows you to swap a players tiles with random tiles in the bag it takes the player and a list of the indices of the tiles it wants to swap as input, list must be in order from smallest to largest
+	// method that gives a player the amount of tiles you specify and if there is not enough the bag gives it the remainder
 	public static void swapTiles(Player player, ArrayList<Integer> indexesOfTiles){
 		
 		ArrayList<Tile> buffer = new ArrayList<Tile>();
@@ -304,10 +555,12 @@ public class Main {
 		
 	}
 	
-	// method that gives a player the amount of tiles you specify and if there is not enough the bag it gives the remainder 
+	// method that gives a player the amount of tiles you specify and if there is not enough the bag gives the player the remainder
 	public static void givePlayerTiles(Player player, int numberOfTiles){
+		
+		int bagsize = bag.size();
 				
-		if(numberOfTiles <= bag.size()){
+		if(numberOfTiles <= bagsize){
 			
 			for (int i = 0; i < numberOfTiles; i++){
 			
@@ -318,7 +571,7 @@ public class Main {
 		}
 		else {
 			
-			for (int i = 0; i < bag.size(); i++){
+			for (int i = 0; i < bagsize; i++){
 				
 				player.currentTiles.add(giveRandomTile());
 				
@@ -328,7 +581,7 @@ public class Main {
 		
 	}
 	
-	// method that creates a 100 by 100 grid of null tiles 
+	// method that creates a 100 by 100 grid of null tiles
 	public static void createGrid(){
 		
 		for (int i = 0; i < 100; i ++){	
@@ -342,12 +595,12 @@ public class Main {
 		}
 		
 	}
-	
-	// method that prints the grid contents and if a space is empty it prints empty location
+		
+	// method that prints the grid contents and if a space is empty it prints the empty location
 	public static void printGrid(){
 		
-		for (int i = 0; i < 100; i ++){
-			for (int j = 0; j < 100; j++){
+		for (int i = 0; i < 7; i ++){
+			for (int j = 0; j < 9; j++){
 			
 				if (grid.get(i).get(j).getColour() == null){
 					System.out.print("empty location, ");
@@ -416,7 +669,9 @@ public class Main {
 	public static Tile giveRandomTile(){
 		
 		double random =  Math.random()*bag.size();
-		return bag.get((int) random);
+		Tile buffer = new Tile(bag.get((int) random).getColour(), bag.get((int) random).getShape());
+		bag.remove((int) random);
+		return buffer;
 			
 	}
 	
