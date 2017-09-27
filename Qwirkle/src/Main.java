@@ -351,8 +351,7 @@ public class Main {
 		
 		return score;
 	}
-	
-	
+		
 	// method to assign who plays first based initially on who has the best possible combo and if they have the same score then by who was added first to the list of players
 	public static void assignOrder(){
 		
