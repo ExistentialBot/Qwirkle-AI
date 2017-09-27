@@ -231,6 +231,18 @@ public class Main {
 	public static int currentTurn = 0;
 	
 	
+	// method that given a player and score it adds the score to the players total score
+	public static void addScore(Player player, int score){
+			player.setTotalScore(player.getTotalScore() + score);
+		}
+	
+	// method that given a tile and location adds it to the grid
+	public static void addTileToGrid(Tile tileToAdd, Location placeInGrid) {
+			
+		grid.get(placeInGrid.getRow()).get(placeInGrid.getColoumn()).setColour(tileToAdd.getColour());
+		grid.get(placeInGrid.getRow()).get(placeInGrid.getColoumn()).setShape(tileToAdd.getShape());
+			
+	}
 	
 	// method that given a list of the locations of the tiles a player played it returns the players score
 	public static int calculateScore(ArrayList<Location> locations){
@@ -347,6 +359,19 @@ public class Main {
 				
 			}
 			
+		}
+		
+		boolean gameEnded = false;
+		
+		for (int f = 0; f < players.size(); f++) {
+		
+			if (players.get(f).getCurrentTiles().size() == 0) {
+				gameEnded = true;
+			}
+		}
+		
+		if (gameEnded && bag.size() == 0) {
+			score = score + 6;
 		}
 		
 		return score;
