@@ -8,6 +8,17 @@ public class Main {
 		generateBag();
 		createGrid();
 		
+	/*	Player karim = new Player(1, "karim", 0, new ArrayList<Tile>());
+		Player bleh = new Player(2, "bleh", 0, new ArrayList<Tile>());
+		System.out.println(bag.size());
+		givePlayerTiles(bleh, 1010);
+		System.out.println(printTiles(bleh.getCurrentTiles()));
+		//System.out.println(bag.size());
+		givePlayerTiles(karim, 4);
+		System.out.println(printTiles(karim.getCurrentTiles()));
+		//System.out.println(bag.size());
+		System.out.println(bag.size()); */
+		
 		// testing calculateScore method with sample game in rules pdf
 	/*	grid.get(2).get(4).setColour(Tile.tile6.getColour());
 		grid.get(2).get(4).setShape(Tile.tile6.getShape());
@@ -221,8 +232,89 @@ public class Main {
 	//	grid.get(2).get(2).setColour(newRandom.getColour());
 	//	grid.get(2).get(2).setShape(newRandom.getShape());
 
-	    printGrid();
 		
+	    // printGrid();
+		
+		Player karim = new Player(Player.iD, "karim", 0, new ArrayList<Tile>());
+		Player quinton = new Player(Player.iD, "quinton", 0, new ArrayList<Tile>());
+		players.add(karim);
+		players.add(quinton);
+		
+		karim.getCurrentTiles().add(bag.get(1));
+		karim.getCurrentTiles().add(bag.get(7));
+		karim.getCurrentTiles().add(bag.get(32));
+		karim.getCurrentTiles().add(bag.get(4));
+		karim.getCurrentTiles().add(bag.get(12));
+		karim.getCurrentTiles().add(bag.get(60));
+		
+		quinton.getCurrentTiles().add(bag.get(72));
+		quinton.getCurrentTiles().add(bag.get(66));
+		quinton.getCurrentTiles().add(bag.get(89));
+		quinton.getCurrentTiles().add(bag.get(44));
+		quinton.getCurrentTiles().add(bag.get(8));
+		quinton.getCurrentTiles().add(bag.get(15));
+		
+	//	System.out.println(printTiles(karim.getCurrentTiles()));
+	//	System.out.println(printTiles(quinton.getCurrentTiles()));
+		
+		assignOrder();
+		
+		//System.out.println(currentPlayer().getPlayerName() + " " + printTiles(currentPlayer().getCurrentTiles()));
+		addTileToGrid(0, new Location(45, 45));
+		addTileToGrid(2, new Location(45, 46));
+		// System.out.println(currentPlayer().getPlayerName() + " " + printTiles(currentPlayer().getCurrentTiles()));
+		karim.getCurrentTiles().add(bag.get(23));
+		karim.getCurrentTiles().add(bag.get(47));
+		
+		ArrayList<Location> karimFirst = new ArrayList<Location>();
+		karimFirst.add(new Location(45, 45));
+		karimFirst.add(new Location(45, 46));
+		addScore(karim, calculateScore(karimFirst));
+		endTurn();
+		
+		
+		if (isValidCheck(currentPlayer().getCurrentTiles().get(0), 45, 47)) {
+		addTileToGrid(0, new Location(45, 47));
+		}
+		if (isValidCheck(currentPlayer().getCurrentTiles().get(0), 44, 47)) {
+			addTileToGrid(0, new Location(44, 47));
+		}
+		
+		quinton.getCurrentTiles().add(bag.get(18));
+		quinton.getCurrentTiles().add(bag.get(32));
+		ArrayList<Location> quintonFirst = new ArrayList<Location>();
+		quintonFirst.add(new Location(45, 47));
+		quintonFirst.add(new Location(44, 47));
+		addScore(quinton, calculateScore(quintonFirst));
+		endTurn();
+		
+
+		if (isValidCheck(currentPlayer().getCurrentTiles().get(2), 46, 47)) {
+			addTileToGrid(2, new Location(46, 47));
+			}
+		if (isValidCheck(currentPlayer().getCurrentTiles().get(2), 47, 47)) {
+				addTileToGrid(2, new Location(47, 47));
+			}
+		karim.getCurrentTiles().add(bag.get(56));
+		karim.getCurrentTiles().add(bag.get(9));
+		
+		ArrayList<Location> karimSecond = new ArrayList<Location>();
+		karimSecond.add(new Location(46, 47));
+		karimSecond.add(new Location(47, 47));
+		addScore(karim, calculateScore(karimSecond)); 
+		endTurn();
+		
+		ArrayList<Integer> tilesToSwap = new ArrayList<Integer>();
+		tilesToSwap.add(1);
+		tilesToSwap.add(3);
+		
+		swapTiles(currentPlayer(), tilesToSwap);
+		endTurn();
+		
+		printGrid();
+		
+		System.out.println(currentPlayer().getTotalScore());
+		System.out.println(currentPlayer().getPlayerName() + " " + printTiles(currentPlayer().getCurrentTiles()));
 	}
 	
 	public static ArrayList<Tile> bag = new ArrayList<Tile>();
@@ -231,17 +323,26 @@ public class Main {
 	public static int currentTurn = 0;
 	
 	
+	public static void addPlayer(String name) {
+		
+		Player newPlayer = new Player(Player.iD, name, 0, new ArrayList<Tile>());
+		players.add(newPlayer);
+		givePlayerTiles(newPlayer, 6);
+	}
+	
 	// method that given a player and score it adds the score to the players total score
 	public static void addScore(Player player, int score){
-			player.setTotalScore(player.getTotalScore() + score);
-		}
+		player.setTotalScore(player.getTotalScore() + score);
+	}
 	
 	// method that given a tile and location adds it to the grid
-	public static void addTileToGrid(Tile tileToAdd, Location placeInGrid) {
-			
+	public static void addTileToGrid(int index, Location placeInGrid) {
+		
+		Tile tileToAdd = new Tile(currentPlayer().getCurrentTiles().get(index).getColour(), currentPlayer().getCurrentTiles().get(index).getShape());
+		currentPlayer().getCurrentTiles().remove(index);
 		grid.get(placeInGrid.getRow()).get(placeInGrid.getColoumn()).setColour(tileToAdd.getColour());
 		grid.get(placeInGrid.getRow()).get(placeInGrid.getColoumn()).setShape(tileToAdd.getShape());
-			
+		
 	}
 	
 	// method that given a list of the locations of the tiles a player played it returns the players score
@@ -376,7 +477,7 @@ public class Main {
 		
 		return score;
 	}
-		
+	
 	// method to assign who plays first based initially on who has the best possible combo and if they have the same score then by who was added first to the list of players
 	public static void assignOrder(){
 		
@@ -515,7 +616,7 @@ public class Main {
 		return true;
 	}
 	
-	// method that ptints who the current player is in the command line
+	// method that prints who the current player is in the command line
 	public static void printCurrentPlayer(){
 		
 		System.out.println("Current player: " + players.get(currentTurn).getPlayerName());
@@ -623,8 +724,8 @@ public class Main {
 	// method that prints the grid contents and if a space is empty it prints the empty location
 	public static void printGrid(){
 		
-		for (int i = 0; i < 7; i ++){
-			for (int j = 0; j < 9; j++){
+		for (int i = 40; i < 50; i ++){
+			for (int j = 40; j < 50; j++){
 			
 				if (grid.get(i).get(j).getColour() == null){
 					System.out.print("empty location, ");
@@ -707,7 +808,7 @@ public class Main {
 		}
 		
 		String print = new String();
-		print = "( " + tiles.get(0).getColour().getIdentifier() + " " + tiles.get(0).getShape().getIdentifier();
+		print = "number of tiles: " + tiles.size() +" ( " + tiles.get(0).getColour().getIdentifier() + " " + tiles.get(0).getShape().getIdentifier();
 		
 		for(int i = 1; i < tiles.size(); i++){
 	     
@@ -719,5 +820,4 @@ public class Main {
 	
 
 }
-
 

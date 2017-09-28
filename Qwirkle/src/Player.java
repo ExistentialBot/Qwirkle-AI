@@ -4,14 +4,14 @@ public class Player {
 
 	public Player(int id, String player, int score, ArrayList<Tile> tiles){
 		
-		iD = id;
+		iD++;
 		playerName = player;
 		totalScore = score;
 		currentTiles = tiles;
 		
 	}
 	
-	int iD;
+	static int iD = 1;
 	String playerName;
 	int totalScore;
 	ArrayList<Tile> currentTiles;
