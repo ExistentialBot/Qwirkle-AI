@@ -1,14 +1,14 @@
-public class SDKButton extends GUIButton
+public class GameInfoPanel extends GUIButton
 {
 	private Game game;
 	private int tileID;
 	private boolean isRed = false;
 
-	public SDKButton(Game game, int tileID, Sprite tileSprite, Rectangle rect) 
+	public GameInfoPanel(Game game,Rectangle rect) 
 	{
-		super(tileSprite, rect, true);
+		super(null, rect, true);
 		this.game = game;
-		this.tileID = tileID;
+		
 		rect.generateGraphics(0x8CFF28);
 	}
 
@@ -21,7 +21,6 @@ public class SDKButton extends GUIButton
 			{
 				rect.generateGraphics(0xFF0000);
 				isRed = true;
-//				game.players.get(game.getCurrentPlayer()).replaceTile(game.getSelectedTile());
 			}
 		}
 		else
@@ -49,10 +48,6 @@ public class SDKButton extends GUIButton
 	public void activate()
 	{
 		game.changeTile(tileID);
-	}
-	public int  getTileID(){
-		return tileID;
-		
 	}
 
 }

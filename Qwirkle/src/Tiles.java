@@ -21,10 +21,12 @@ public class Tiles
 				if(!line.startsWith("//"))
 				{
 					String[] splitString = line.split("-");
-					String tileName = splitString[0];
-					int spriteX = Integer.parseInt(splitString[1]);
-					int spriteY = Integer.parseInt(splitString[2]);
-					Tile tile = new Tile(tileName, spriteSheet.getSprite(spriteX, spriteY));
+					int tileID=Integer.parseInt(splitString[0]);
+					String tileShape = splitString[1];
+					String tileColor = splitString[2];
+					int spriteX = Integer.parseInt(splitString[3]);
+					int spriteY = Integer.parseInt(splitString[4]);
+					Tile tile = new Tile(tileID,tileColor,tileShape, spriteSheet.getSprite(spriteX, spriteY));
 					tilesList.add(tile);
 				}
 			}
@@ -37,6 +39,7 @@ public class Tiles
 
 	public void renderTile(int tileID, RenderHandler renderer, int xPosition, int yPosition, int xZoom, int yZoom)
 	{
+//		System.out.println("TIles.renderTiel is called");
 		if(tileID >= 0 && tilesList.size() > tileID)
 		{
 			renderer.renderSprite(tilesList.get(tileID).sprite, xPosition, yPosition, xZoom, yZoom, false);
@@ -61,16 +64,22 @@ public class Tiles
 
 		return sprites;
 	}
-
-	public class Tile 
+	public Sprite getSprite(int i)
 	{
-		public String tileName;
-		public Sprite sprite;
+		Sprite sprite= tilesList.get(i).sprite;
 
-		public Tile(String tileName, Sprite sprite) 
-		{
-			this.tileName = tileName;
-			this.sprite = sprite;
-		}
+		return sprite;
 	}
+
+
+	public ArrayList getTilesArray() {
+		return tilesList;
+	}
+
+	public void removeTile(int id) {
+		// TODO Auto-generated method stub
+		tilesList.remove(id);
+	}
+
+
 }

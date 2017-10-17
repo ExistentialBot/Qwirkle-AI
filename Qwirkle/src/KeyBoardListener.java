@@ -24,6 +24,9 @@ public class KeyBoardListener implements KeyListener, FocusListener
 		
 		if(keys[KeyEvent.VK_CONTROL])
 			game.handleCTRL(keys);
+		
+		if(keys[KeyEvent.VK_SPACE])
+			game.swap();
 	}
 
 	public void keyReleased(KeyEvent event)
@@ -62,6 +65,10 @@ public class KeyBoardListener implements KeyListener, FocusListener
 	public boolean right()
 	{
 		return keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT];
+	}
+	
+	public boolean swap(){
+		return keys[KeyEvent.VK_SPACE];
 	}
 
 }

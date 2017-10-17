@@ -15,11 +15,13 @@ public class Map
 	private HashMap<Integer, String> comments = new HashMap<Integer, String>();
 
 	private File mapFile;
+	private Game game;
 
-	public Map(File mapFile, Tiles tileSet)
+	public Map(File mapFile, Tiles tileSet,Game game)
 	{
 		this.mapFile = mapFile;
 		this.tileSet = tileSet;
+		this.game=game;
 		try 
 		{
 			Scanner scanner = new Scanner(mapFile);
@@ -40,12 +42,12 @@ public class Map
 					}
 
 
-					String[] splitString = line.split(",");
-					if(splitString.length >= 3)
+					String[] splitString = line.split("-");
+					if(splitString.length >= 5)
 					{
 						MappedTile mappedTile = new MappedTile(Integer.parseInt(splitString[0]),
-															   Integer.parseInt(splitString[1]),
-															   Integer.parseInt(splitString[2]));
+															   Integer.parseInt(splitString[3]),
+															   Integer.parseInt(splitString[4]));
 						mappedTiles.add(mappedTile);
 					}
 				}
@@ -78,6 +80,16 @@ public class Map
 
 		if(!foundTile)
 			mappedTiles.add(new MappedTile(tileID, tileX, tileY));
+//		checkAndAdd(mappedTiles);
+		game.players.get(game.getCurrentPlayer()).replaceTile(game.getSelectedTile());
+
+	}
+	
+	public void checkAndAdd(ArrayList<MappedTile>mappedTiles,int tileID,int tileX,int tileY){
+		MappedTile mt=new MappedTile(tileID,tileX,tileY);
+		
+		
+		
 	}
 
 	public void removeTile(int tileX, int tileY)
@@ -96,8 +108,9 @@ public class Map
 		try
 		{
 			int currentLine = 0;
-			if(mapFile.exists()) 
+			if(mapFile.exists()){ 
 				mapFile.delete();
+			}
 			mapFile.createNewFile();
 
 			PrintWriter printWriter = new PrintWriter(mapFile);
@@ -130,6 +143,7 @@ public class Map
 
 	public void render(RenderHandler renderer, int xZoom, int yZoom)
 	{
+		
 		int tileWidth = 50 * xZoom;
 		int tileHeight = 50 * yZoom;
 
@@ -152,9 +166,8 @@ public class Map
 			tileSet.renderTile(mappedTile.id, renderer, mappedTile.x * tileWidth, mappedTile.y * tileHeight, xZoom, yZoom);
 		}
 	}
-
-	//Tile ID in the tileSet and the position of the tile in the map
-	class MappedTile
+	
+	public class MappedTile
 	{
 		public int id, x, y;
 
@@ -165,4 +178,6 @@ public class Map
 			this.y = y;
 		}
 	}
+	//Tile ID in the tileSet and the position of the tile in the map
+	
 }

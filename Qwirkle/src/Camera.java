@@ -44,6 +44,7 @@ public class Camera implements GameObject
 
 			camRectangle.y += speed;
 		}
+		
 
 
 		updateCamera(game.getRenderer().getCamera());
